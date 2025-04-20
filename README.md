@@ -1,108 +1,93 @@
-# AI4Micro (AIM) Entry Exam – Environment Setup Guide
 # AI4Micro (AIM) 预考核 —— 环境配置说明
 
 Welcome!  Follow these steps **before exam day** so you have a clean, identical Python 3.10+ workspace with JupyterLab, NumPy, pandas, and Matplotlib.
+
 同学们大家好啊！ 请在开始考试前按照以下步骤在自己的电脑上配置好Python编程环境，包括Python 3.10或更高版本以及最新的JupyterLab, NumPy, pandas, 和Matplotlib.
 
 ---
 
-## 1  Install Miniconda (recommended)
+## 1  Install Miniconda (recommended) 安装Miniconda（这是个好东西！）
 
-1. Visit the official [**Miniconda download page**](https://docs.conda.io/en/latest/miniconda.html) and grab the installer that matches your OS (Windows x86‑64, macOS arm64/intel, or Linux).
+👉 Already have Anaconda?  Skip to the section 2 – the commands work the same. 
+
+👉 如果已经安装了Anaconda/Miniconda，请忽略以下内容直奔第二部分的环境配置。
+
+1. Visit the official [**Miniconda download page**](https://www.anaconda.com/download/success) and grab the installer that matches your OS (Windows x86‑64, macOS arm64/intel, or Linux). 请从以上链接中下载适配个人笔记本和操作系统的Miniconda安装包，需注意CPU架构适配性。
+
 2. Run the installer with *default options*.
    - **macOS/Linux:**
      ```bash
      bash Miniconda3-latest-Linux-x86_64.sh   # or the macOS installer
      ```
+     从terminal中运行以下脚本，或者直接下载macOS适配的*.pkg*安装包并手动安装。
    - **Windows:** double‑click the `.exe` file.
-3. Close and reopen your terminal (or start the *Anaconda Prompt* on Windows).
-4. Confirm Conda is on your PATH:
+     直接下载安装包既可
+     
+3. Finish *conda* installation 完成安装.
+   - **macOS/Linuex:**
+     Close and reopen your terminal. 重启Terminal
+   - **Windows:**
+     Start the *Anaconda Prompt* or *Anaconda Powershell* 找到并启动Anaconda Prompt或Anaconda Powershell.
+     
+4. Confirm Conda is on your PATH 输入以下指令确认安装成功:
    ```bash
-   conda --version   # should print something like "conda 24.3.0"
+   conda --version
    ```
-
-👉 Already have Anaconda?  Skip to the next section – the commands work the same.
-
+   Expected output:
+   ```bash
+   conda 24.3.0 #or something alike
+   ```
 ---
 
-## 2  Create the exam environment
+## 2  Create the exam environment 创建考试用Python虚拟环境
 
+Activate a fresh environment called py_exam 创建并激活一个本地虚拟环境py_exam
+
+*This will usually take a couple minutes, be patient. 环境解析需要点时间，莫着急*
 ```bash
-# create + activate a fresh environment called py_exam
-conda create -n py_exam python=3.10 \
-  numpy pandas matplotlib scikit-learn jupyterlab ipywidgets -c conda-forge -y
+conda create -n py_exam python=3.10 numpy pandas matplotlib scikit-learn jupyterlab ipywidgets -c conda-forge -y
+```
+Now activate the virtual environment 让虚拟环境活过来吧！
+```bash
 conda activate py_exam
 ```
-
-- `python=3.10` ensures everyone uses the same interpreter.
-- `-c conda-forge` pulls the latest, cross‑platform binaries.
-- `ipywidgets` lets the notebook render multiple‑choice widgets without extra extensions.
-
-### Optional: enable the fast solver
-
-```bash
-conda install -n base conda-libmamba-solver -y
-conda config --set solver libmamba
-```
-
-This typically cuts environment‑solve time from minutes to seconds.
-
 ---
 
-## 3  Install any extra packages with **pip**
+## 3  Install any extra packages with **pip** 利用**pip**安装其他可能用到的Python工具
 
 After *activating* the environment you may use pip as usual – the packages will live **inside** `py_exam`:
 
-```bash
-pip install seaborn plotly  # examples only – not required for the exam
-```
-
-> **Tip:** Use `python -m pip install …` if you have multiple Python versions on your system.
-
----
-
-## 4  Launch JupyterLab
+在虚拟环境用*pip*安装的Python包仅能在虚拟环境py_exam中调用
 
 ```bash
-jupyter lab   # Opens http://localhost:8888/lab in your browser
+pip install seaborn scikit-image  
 ```
+Note that these are just examples to demonstrate *pip* usage, they are not required for the exam
 
-Place the exam repository in any folder and open the notebook from the left sidebar.
+上述代码对于考试不是必须的，但安装上好像也没啥坏处。
 
 ---
 
-## 5  Verify everything works
+## 4  Launch JupyterLab 启动JupyterLab
 
-Inside a new notebook or Python prompt run:
-
-```python
-import sys, platform, numpy, pandas, matplotlib, sklearn
-print(platform.python_version())
-print(numpy.__version__, pandas.__version__, matplotlib.__version__, sklearn.__version__)
+```bash
+jupyter lab --notebook-dir="D:/path-to-exam" 
 ```
+Replace the "D:/path-to-exam" to where the exam content directory is located. 
 
-If you see the version numbers without errors you are ready for the exam.
-
----
-
-## 6  Troubleshooting
-
-| Symptom                      | Fix                                                                                 |
-| ---------------------------- | ----------------------------------------------------------------------------------- |
-| `conda: command not found`   | Open a **new** terminal after install; or run `conda init` then restart your shell. |
-| `jupyter: command not found` | Make sure the `py_exam` environment is activated.                                   |
-| Solver hangs                 | Install the *libmamba* solver (see above).                                          |
+将"D:/path-to-exam"替换成考试内容文件夹路径
 
 ---
 
-## 7  Cleaning up (after the course)
+## 5  Deactivate the virtual environment (after the course) 考试结束后关闭虚拟环境
 
 ```bash
 conda deactivate
-conda remove -n py_exam --all
 ```
 
 ---
 
 *Happy coding!*
+
+*码上快乐!*
 
