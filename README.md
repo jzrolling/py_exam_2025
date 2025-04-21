@@ -68,18 +68,32 @@ Note that these are just examples to demonstrate *pip* usage, they are not requi
 
 ---
 
-## 4  Launch JupyterLab 启动JupyterLab
+## 4  Clone or download the github repo 克隆或下载github答题包
+
+If you have git installed, you may simply pull the repo using the following command:
+```bash
+git clone https://github.com/jzrolling/py_exam_2025.git
+```
+You can also go to the GitHub page, click **Code ▶ Download ZIP**, and unzip it locally. 
+
+---
+
+## 5  Launch JupyterLab 启动JupyterLab
 
 ```bash
 jupyter lab --notebook-dir="D:/path-to-exam" 
 ```
-Replace the "D:/path-to-exam" to where the exam content directory is located. 
+Replace the "D:/py_exam_2025" to where the exam content directory is located. 
 
-将"D:/path-to-exam"替换成考试内容文件夹路径
+将"D:/py_exam_2025"替换成考试内容文件夹路径
+
+Open **AI4M_notebook.ipynb** and follow the instructions to complete the test.
+
+点开答题notebook，根据引导完成答题。
 
 ---
 
-## 5  Deactivate the virtual environment (after the course) 考试结束后关闭虚拟环境
+## 6  Deactivate the virtual environment (after the course) 考试结束后关闭虚拟环境
 
 ```bash
 conda deactivate
