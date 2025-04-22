@@ -141,7 +141,7 @@ class login_interface:
         self.email1_button = widgets.Button(description="确认",layout=widgets.Layout(width='20%'))
         self.email2 = widgets.Text(description='邮箱确认:',layout=widgets.Layout(width='80%'),disabled=True)
         self.email2_button = widgets.Button(description="确认",layout=widgets.Layout(width='20%'),disabled=True)
-        self.warning_box = widgets.Textarea(value='请输入邮箱地址并确认',
+        self.warning_box = widgets.Textarea(value='请输入姓名, 实验室, \n 以及个人邮箱地址并确认',
                                          style={'font_size':'25px'},layout=widgets.Layout(width='99%',height='125px'))
         self.reset_button = widgets.Button(description='重置',disabled=True,
                                             layout=widgets.Layout(width='50%',height='10%'))
