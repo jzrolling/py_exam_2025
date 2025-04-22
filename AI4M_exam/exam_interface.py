@@ -93,6 +93,8 @@ class ExamApp:
         
     def update_login_interface(self,change):
         self.info_tracker['email'] = self.login.email1.value
+        self.info_tracker['name'] = self.login.namebox.value
+        self.info_tracker['lab'] = self.login.labbox.value
         self.timer.start()
         self.login.layout.children = [widgets.HBox([self.timer.time_display,
                                                     self.early_bird])]
@@ -132,7 +134,9 @@ class ExamApp:
 class login_interface:
 
     def __init__(self):
-        
+
+        self.namebox = widgets.Text(description='姓名:',layout=widgets.Layout(width='95%')) 
+        self.labbox = widgets.Text(description='实验室:',layout=widgets.Layout(width='95%')) 
         self.email1 = widgets.Text(description='邮箱:',layout=widgets.Layout(width='80%'))
         self.email1_button = widgets.Button(description="确认",layout=widgets.Layout(width='20%'))
         self.email2 = widgets.Text(description='邮箱确认:',layout=widgets.Layout(width='80%'),disabled=True)
@@ -143,7 +147,8 @@ class login_interface:
                                             layout=widgets.Layout(width='50%',height='10%'))
         self.confirm_button = widgets.Button(description='继续',disabled=True,
                                              layout=widgets.Layout(width='50%',max_height='auto'))
-        self.layout = widgets.VBox([widgets.HBox([self.email1,self.email1_button]),
+        self.layout = widgets.VBox([self.namebox,self.labbox,
+                                    widgets.HBox([self.email1,self.email1_button]),
                                     widgets.HBox([self.email2,self.email2_button]),
                                     self.warning_box,
                                     widgets.HBox([self.reset_button,self.confirm_button])],
@@ -177,6 +182,8 @@ class login_interface:
                 self.confirm_button.disabled=False
                 self.confirm_button.style.button_color='orange'
                 self.reset_button.disabled=False
+                self.namebox.disabled=True
+                self.labbox.disabled=True
                 self.warning_box.value='即将开始答题，共计25道题，限时15分钟完成 \n 仅有一次机会! \n 确认开始请点击"继续"按钮'
             else:
                 self.email1_button.disabled=True
@@ -188,6 +195,8 @@ class login_interface:
 
     def reset(self,b):
         if not self.started:
+            self.namebox.disabled=False
+            self.labbox.disabled=False
             self.email1_button.disabled=False
             self.email1_button.style.button_color='lightgreen'
             self.email1.disabled=False
@@ -203,6 +212,8 @@ class login_interface:
             self.wait=True
 
     def _freeze(self):
+        self.namebox.disabled=True
+        self.labbox.disabled=True
         self.email1_button.disabled=True
         self.email1_button.style.button_color='lightgrey'
         self.email1.disabled=True
