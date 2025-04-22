@@ -200,7 +200,7 @@ class login_interface:
             self.email1_button.disabled=False
             self.email1_button.style.button_color='lightgreen'
             self.email1.disabled=False
-            self.warning_box.value = '请输入邮箱地址并确认'
+            self.warning_box.value = '请输入姓名, 所在实验室, \n 以及个人邮箱地址并确认'
             self.email2_button.disabled=True
             self.email2_button.style.button_color='lightgrey'
             self.email2.disabled=True
